@@ -1,0 +1,105 @@
+:root {
+    --clr-primary-text: rgb(38, 33, 4);
+    --ff-accent: monospace;
+    --bdr-default: 2px solid black; 
+}
+
+body {
+    background-color: rgb(172, 156, 189);
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--clr-primary-text);
+    font-family: var(--ff-accent);
+    font-weight: 900;
+    line-height: 1;
+}
+
+/* h2,
+h3,
+p {
+    margin-bottom: 1em;
+} */
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+p {
+    font-family: monospace;
+}
+
+.hero {
+    background-color: aquamarine;
+    border-bottom: var(--bdr-default);
+}
+
+.hero-item-container {
+    display: flex;
+    justify-content: left;
+    align-content: left;
+    flex-direction: column;
+    background-color: cornflowerblue;
+    width: fit-content;
+    border-right: var(--bdr-default);
+    padding: 1em;
+    
+}
+
+.name-container {
+    white-space: nowrap;
+    display: flex;
+}
+
+
+.typewriter {
+    overflow: hidden;
+    display: none;
+}
+
+.typewriter-two {
+    overflow: hidden;
+    display: none;
+
+}
+.name-container {
+    flex-direction: column;
+}
+
+.name-container:hover .typewriter {
+    display: inline;
+    animation: 1.5s steps(7, end) typing;
+    border-right: .15em solid rgb(255, 238, 0);
+}
+
+.name-container:hover .typewriter-two {
+    display: inline;
+    animation: 2s steps(11, end) typing;
+    border-right: .15em solid rgb(255, 238, 0);
+
+}
+
+.name-tag-item {
+    display: flex;
+    margin: 0 auto;
+}
+
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+
+
