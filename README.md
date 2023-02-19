@@ -1,4 +1,5 @@
-# My Personal Site
+# Conal Cosgrove
 
-A simple 'about me' site, using a bootstrap theme.
-[Visit here!](https://conalcosgrove.github.io)
+My personal blog / CV / experiment hosting playground.
+
+[conalcosgrove.github.io](conalcosgrove.github.io)
