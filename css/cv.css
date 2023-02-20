@@ -1,0 +1,39 @@
+.content {
+    display: flex;
+    flex-direction: row;
+}
+.cv-container {
+    display: grid;
+    grid-template-columns: 15rem 1fr 5rem;
+    gap: 1.5rem;
+    margin: auto;
+    max-width: 800px;
+    
+}
+
+.job-section {
+    background-color: white;
+    border: var(--bdr-default);;
+    padding: 2em;
+    margin: 1em;
+
+}
+
+.company-logo {
+    display: flex;
+    padding: 2em;
+    align-items: center;
+    justify-content: center;
+    max-width: 12.5em;
+}
+
+.date-section {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.date-line {
+
+
+}

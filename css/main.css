@@ -43,23 +43,44 @@ p {
 .hero {
     background-color: aquamarine;
     border-bottom: var(--bdr-default);
+    border-top: var(--bdr-default);
+    display: flex;
+    flex-flow: row;
 }
 
 .hero-item-container {
+    cursor: pointer;
     display: flex;
-    justify-content: left;
-    align-content: left;
+    justify-content: center;
+    align-content: center;
     flex-direction: column;
-    background-color: cornflowerblue;
+    text-align: center;
     width: fit-content;
     border-right: var(--bdr-default);
+}
+
+.hero-item-container.final {
+    border-right: none
+}
+
+.hero-item-container.page-link {
     padding: 1em;
-    
+}
+
+.hero-item-container.page-link:hover {
+    background-color: rgb(185, 254, 185);
+}
+
+.hero-spacer {
+    flex-grow: 1;
+    border-right: var(--bdr-default);
 }
 
 .name-container {
     white-space: nowrap;
     display: flex;
+    background-color: cornflowerblue;
+    padding: 1em;
 }
 
 
