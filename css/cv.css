@@ -16,7 +16,9 @@
     border: var(--bdr-default);;
     padding: 2em;
     margin: 1em;
-
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .company-logo {
@@ -28,12 +30,10 @@
 }
 
 .date-section {
+    margin: 1em;
    display: flex;
+   flex-direction: column;
    align-items: center;
-   justify-content: center;
-}
-
-.date-line {
-
-
+   justify-content: space-between;
+   text-align: center;
 }

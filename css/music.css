@@ -1,0 +1,25 @@
+.music-body {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.music-post-container {
+    display: flex;
+    background-color: white;
+    width: fit-content;
+    border: var(--bdr-default);
+    margin: 1em;
+    padding: 1em;
+}
+
+.music-post-img {
+    max-width: 300px;
+}
+
+.music-post-text {
+    padding-left: 1em;
+}
