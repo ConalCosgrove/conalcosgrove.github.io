@@ -41,7 +41,7 @@ p {
 }
 
 .hero {
-    background-color: aquamarine;
+    background-color: #7fffd4;
     border-bottom: var(--bdr-default);
     border-top: var(--bdr-default);
     display: flex;
