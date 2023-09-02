@@ -120,7 +120,8 @@
         flagImg.src = currentCountry.value.flags.svg;
         setFavicon(currentCountry.value.cca2);
         countryInput.onkeyup = (e) => {
-
+            if (currentCountry.done) return;
+            
             switch (countryInput.value.toLowerCase().trim()) {
                 case 'skip': {
                     skippedCountries.push(currentCountry);
