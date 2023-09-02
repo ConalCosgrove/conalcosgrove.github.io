@@ -142,6 +142,7 @@
                 case 'next': {
                     if (!skipped) break;
                     countryText.innerText = ""
+                    countryInput.value = "";
                     nextCountry(generator);
                     skipped = false;
                     break;
