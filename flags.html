@@ -113,37 +113,44 @@
         }
         return gen;
     }
+
+    function nextCountry(iterator) {
+        currentCountry = generator.next();
+        if (!currentCountry.done) {
+            flagImg.src = currentCountry.value.flags.svg;
+            setFavicon(currentCountry.value.cca2);
+        }
+    }
     
     generateRandomCountryIterator().then((iter) => {
         const generator = iter();
-        currentCountry = generator.next();
-        flagImg.src = currentCountry.value.flags.svg;
-        setFavicon(currentCountry.value.cca2);
+        nextCountry(generator);
         countryInput.onkeyup = (e) => {
             if (currentCountry.done) return;
             
             switch (countryInput.value.toLowerCase().trim()) {
                 case 'skip': {
+                    if (skipped) break;
                     skippedCountries.push(currentCountry);
+                    countryInput.focus();
                     countryInput.value = ""
-                    countryText.innerText = currentCountry.value.name.common;
+                    countryText.innerText = `${currentCountry.value.name.common} - type next to continue...`;
                     missedText.innerText = `Missed: ${++missed}`;
                     skipped = true;
                     break;
                 }
-                case currentCountry.value.name.common.toLowerCase(): {
+                case 'next': {
+                    if (!skipped) break;
                     countryText.innerText = ""
-                    countryInput.value = ""
-                    if (!skipped) {
-                        score++;
-                        scoreText.innerText = `Score: ${score}`;
-                    }
+                    nextCountry(generator);
                     skipped = false;
-                    currentCountry = generator.next();
-                    if (!currentCountry.done) {
-                        flagImg.src = currentCountry.value.flags.svg;
-                        setFavicon(currentCountry.value.cca2)
-                    }
+                    break;
+                }
+                case currentCountry.value.name.common.toLowerCase(): {
+                    if (skipped) break;
+                    countryInput.value = ""
+                    scoreText.innerText = `Score: ${++score}`;
+                    nextCountry(generator);
                     break;
                 }
                 default: {
@@ -169,8 +176,5 @@
             }
         };
     });
-    
-
-
 </script>
 </html>
