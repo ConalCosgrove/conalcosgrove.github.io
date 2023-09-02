@@ -109,7 +109,7 @@
         const countries = await request.json();
         shuffle(countries)
         function* gen() {
-            yield* countries.slice(0,10);
+            yield* countries;
         }
         return gen;
     }
