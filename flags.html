@@ -115,7 +115,7 @@
     }
 
     function nextCountry(iterator) {
-        currentCountry = generator.next();
+        currentCountry = iterator.next();
         if (!currentCountry.done) {
             flagImg.src = currentCountry.value.flags.svg;
             setFavicon(currentCountry.value.cca2);
