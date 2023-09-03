@@ -57,6 +57,10 @@
     #command-help-text {
         text-align: center;
     }
+    #bugfix-input {
+        width: 0px;
+        height: 0px;
+    }
 
 </style>
 <body>
@@ -102,6 +106,7 @@
     <h1 id="missed-section-heading" class="hidden">Here's what you missed:</h1>
     <div id="skipped-country-list">
     </div>
+    <input id="bugfix-input"/>
     </div>
 </body>
 <script>
@@ -115,6 +120,7 @@
     const favicon = document.querySelector('[rel=icon]');
     const flagImg = document.getElementById('current-flag');
     const countryInput = document.getElementById('guess-input');
+    const bugfixInput = document.getElementById('bugfix-input');
     const countryText = document.getElementById('name-text');
     const scoreText = document.getElementById('score-text');
     const missedText = document.getElementById('missed-text');
@@ -159,8 +165,6 @@
         if (!currentCountry.done) {
             flagImg.src = currentCountry.value.flags.svg;
             setFavicon(currentCountry.value.cca2);
-            const keyPress = new KeyboardEvent('keyup', {key: 'Enter'});
-            countryInput.dispatchEvent(keyPress);
         } else {
             gameState = "GAMEOVER";
         }
@@ -177,6 +181,8 @@
                     if (gameState === "SKIPPED") break;
                     skippedCountries.push(currentCountry);
                     countryInput.value = ""
+                    bugfixInput.focus();
+                    countryInput.focus();
                     countryText.innerText = `${currentCountry.value.name.common} - type N to continue...`;
                     missedText.innerText = `Missed: ${++missed}`;
                     gameState = "SKIPPED"
@@ -186,13 +192,17 @@
                     if (gameState !== "SKIPPED") break;
                     countryText.innerText = ""
                     countryInput.value = "";
+                    bugfixInput.focus();
+                    countryInput.focus();
                     gameState = "ACTIVE"
                     nextCountry(generator);
                     break;
                 }
                 case currentCountry.value.name.common.toLowerCase(): {
                     if (gameState !== "ACTIVE") break;
-                    countryInput.value = ""
+                    countryInput.value = "";
+                    bugfixInput.focus();
+                    countryInput.focus();
                     scoreText.innerText = `Score: ${++score}`;
                     nextCountry(generator);
                     break;
@@ -210,7 +220,8 @@
                 flagImg.src =  'https://www.looper.com/img/gallery/where-is-seinfelds-real-life-cosmo-kramer-today/intro-1671045259.webp';
                 whatYouMissedText.className = "visible";
                 commandHelpText.className = "hidden";
-                countryInput.value = "";
+                bugfixInput.focus();
+                countryInput.focus();
                 countryText.innerText = "";
 
                 skippedCountries.map((country) => {
