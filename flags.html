@@ -14,7 +14,7 @@
         align-items: center;
     }
     #current-flag {
-        max-width: 80vw;
+        max-width: 80%;
     }
     .flag {
         margin-bottom: 50px;
@@ -171,7 +171,6 @@
                 case 'skip': {
                     if (skipped) break;
                     skippedCountries.push(currentCountry);
-                    countryInput.focus();
                     countryInput.value = ""
                     countryText.innerText = `${currentCountry.value.name.common} - type next to continue...`;
                     missedText.innerText = `Missed: ${++missed}`;
