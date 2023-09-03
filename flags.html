@@ -60,7 +60,7 @@
     #bugfix-input {
         width: 0px;
         height: 0px;
-        display: hidden;
+        display: none;
     }
 
 </style>
@@ -209,6 +209,7 @@
                 bugfixInput.focus();
                 countryInput.focus();
                 countryText.innerText = "";
+                countryInput.value = "";
 
                 skippedCountries.map((country) => {
                     const img = document.createElement('img');
