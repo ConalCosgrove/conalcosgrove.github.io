@@ -126,6 +126,7 @@
     let score = 0;
     let missed = 0;
     let skipped = false; 
+    let gameState = "ACTIVE";
 
     scoreText.innerText = `Score: ${score}`;
     missedText.innerText = `Missed: ${missed}`;
@@ -158,6 +159,8 @@
         if (!currentCountry.done) {
             flagImg.src = currentCountry.value.flags.svg;
             setFavicon(currentCountry.value.cca2);
+        } else {
+            gameState = "GAMEOVER";
         }
     }
     
@@ -165,7 +168,7 @@
         const generator = iter();
         nextCountry(generator);
         countryInput.onkeyup = (e) => {
-            if (currentCountry.done) return;
+            if (gameState === "GAMEOVER") return;
             
             switch (countryInput.value.toLowerCase().trim()) {
                 case 'skip': {
@@ -192,12 +195,16 @@
                     nextCountry(generator);
                     break;
                 }
+                case "quit": {
+                    gameState = "GAMEOVER";
+                    break;
+                }
                 default: {
                     break;
                 } 
             }
 
-            if (currentCountry.done) {
+            if (gameState === "GAMEOVER") {
                 flagImg.src =  'https://www.looper.com/img/gallery/where-is-seinfelds-real-life-cosmo-kramer-today/intro-1671045259.webp'
                 whatYouMissedText.className = "visible"
                 skippedCountries.map((country) => {
