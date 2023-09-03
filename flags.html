@@ -156,6 +156,8 @@
         if (!currentCountry.done) {
             flagImg.src = currentCountry.value.flags.svg;
             setFavicon(currentCountry.value.cca2);
+            const keyPress = new KeyboardEvent('keyup', {key: 'Enter'});
+            countryInput.dispatchEvent(keyPress);
         } else {
             gameState = "GAMEOVER";
         }
