@@ -36,6 +36,7 @@
     }
     .score-text-line {
         margin-top: 10px;
+        text-align: center;
     }
     #skipped-country-list {
         display: flex;
@@ -94,6 +95,7 @@
             <h2 id="missed-text" class="score-text-line"></h2>
         </div>
         <img id="current-flag" class="flag"></img>
+        <p id="command-help-text">Type "skip" to see the answer, or "quit" to see all that you've missed.</p>
     <h1 id="missed-section-heading" class="hidden">Here's what you missed:</h1>
     <div id="skipped-country-list">
     </div>
@@ -115,13 +117,13 @@
     const missedText = document.getElementById('missed-text');
     const skippedCountryHolder = document.getElementById('skipped-country-list');
     const whatYouMissedText = document.getElementById('missed-section-heading');
+    const commandHelpText = document.getElementById('command-help-text');
 
     const skippedCountries = [];
     let currentCountry;
     let score = 0;
     let missed = 0;
-    let skipped = false; 
-    let gameState = "ACTIVE"; // can be "ACTIVE" | "GAMEOVER"
+    let gameState = "ACTIVE"; // can be "ACTIVE" | "GAMEOVER" | "SKIPPED"
 
     scoreText.innerText = `Score: ${score}`;
     missedText.innerText = `Missed: ${missed}`;
@@ -167,24 +169,24 @@
             
             switch (countryInput.value.toLowerCase().trim()) {
                 case 'skip': {
-                    if (skipped) break;
+                    if (gameState === "SKIPPED") break;
                     skippedCountries.push(currentCountry);
                     countryInput.value = ""
-                    countryText.innerText = `${currentCountry.value.name.common} - type next to continue...`;
+                    countryText.innerText = `${currentCountry.value.name.common} - type N to continue...`;
                     missedText.innerText = `Missed: ${++missed}`;
-                    skipped = true;
+                    gameState = "SKIPPED"
                     break;
                 }
-                case 'next': {
-                    if (!skipped) break;
+                case 'n': {
+                    if (gameState !== "SKIPPED") break;
                     countryText.innerText = ""
                     countryInput.value = "";
+                    gameState = "ACTIVE"
                     nextCountry(generator);
-                    skipped = false;
                     break;
                 }
                 case currentCountry.value.name.common.toLowerCase(): {
-                    if (skipped) break;
+                    if (gameState !== "ACTIVE") break;
                     countryInput.value = ""
                     scoreText.innerText = `Score: ${++score}`;
                     nextCountry(generator);
@@ -192,8 +194,6 @@
                 }
                 case "quit": {
                     gameState = "GAMEOVER";
-                    countryInput.value = ""
-                    countryText.innerText = ""
                     break;
                 }
                 default: {
@@ -202,14 +202,18 @@
             }
 
             if (gameState === "GAMEOVER") {
-                flagImg.src =  'https://www.looper.com/img/gallery/where-is-seinfelds-real-life-cosmo-kramer-today/intro-1671045259.webp'
-                whatYouMissedText.className = "visible"
+                flagImg.src =  'https://www.looper.com/img/gallery/where-is-seinfelds-real-life-cosmo-kramer-today/intro-1671045259.webp';
+                whatYouMissedText.className = "visible";
+                commandHelpText.className = "hidden";
+                countryInput.value = "";
+                countryText.innerText = "";
+
                 skippedCountries.map((country) => {
                     const img = document.createElement('img');
                     const text = document.createElement('h2');
                     const div = document.createElement('div');
-                    div.id = "skipped-country"
-                    img.className = "flag missed-flag"
+                    div.id = "skipped-country";
+                    img.className = "flag missed-flag";
                     img.src = country.value.flags.svg;
                     text.innerText = country.value.name.common;
                     div.appendChild(text);
