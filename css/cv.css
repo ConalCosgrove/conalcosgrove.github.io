@@ -10,7 +10,7 @@
 
 .job-section {
     background-color: white;
-    border: var(--bdr-default);;
+    border: var(--bdr-default);
     padding: 2em;
     margin: 1em;
     display:flex;
