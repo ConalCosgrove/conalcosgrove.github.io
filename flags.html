@@ -136,7 +136,7 @@
     missedText.innerText = `Missed: ${missed}`;
 
     async function generateRandomCountryIterator() {
-        const request = await fetch('https://restcountries.com/v3.1/all?fields=name,flags,cca2');
+        const request = await fetch('/data/flags.json');
         const countries = await request.json();
         shuffle(countries)
         function* gen() {
