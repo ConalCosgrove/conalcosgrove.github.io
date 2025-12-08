@@ -36,5 +36,17 @@
           <a href="/cv.html"><h2>CV</h2></a>
         </div>
       </div>
+      <div class="main-section">
+        
+      </div>
   </body>
+  <script>
+    async function injectMusic() {
+	    const musicData = await fetch("/data/music.json")
+	    const musicJson = await musicData.json();
+	    const mainSection = document.getElementsByClassName("main-section");
+	    mainSection.innerText = musicJson;
+    }
+    injectMusic();
+  </script>
 </html>
