@@ -45,7 +45,7 @@
 	    const musicData = await fetch("/data/music.json")
 	    const musicJson = await musicData.json();
 	    const mainSection = document.getElementsByClassName("main-section");
-	    mainSection[0].innerText = musicJson;
+	    mainSection[0].innerText = musicJson.Items[0].Name;
     }
     injectMusic();
   </script>
